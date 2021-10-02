@@ -52,6 +52,9 @@ void argparse_init_buf(ArgparseBuf *buf,
  * 
  * It also returns -5 if it's an unknown argument (not in the config list).
  * The arg_val_out will also be set to the FULL VALUE of the current argument.
+ * 
+ * *arg_val_out will contain the address of the option value,
+ * or if there's none, NULL.
 */
 int argparse_next(ArgparseBuf *buf,
                   char **arg_val_out);
@@ -96,6 +99,15 @@ int argparse_next(ArgparseBuf *buf,
 			if (arg_len > 2) {
 				size_t i;
 				char *opt = current_arg + 2;
+
+				*arg_val_out = NULL;
+				for (i = 0; i < arg_len - 2; ++i) {
+					if (opt[i] == '=') {
+						opt[i] = '\0';
+						*arg_val_out = opt + i + 1;
+						break;
+					}
+				}
 				
 				for (i = 0; i < buf->no_of_cfgs; ++i) {
 					if (strcmp(opt, buf->cfgs[i].long_name) == 0) {
