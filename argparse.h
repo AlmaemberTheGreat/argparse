@@ -10,8 +10,9 @@ typedef struct {
 } ArgparseArgCfg;
 
 typedef struct {
-	ArgparseArgCfg *cfg;
-	size_t idx,
+	ArgparseArgCfg *cfgs;
+	size_t no_of_cfgs,
+	       idx,
 	       argc;
 } ArgparseBuf;
 
