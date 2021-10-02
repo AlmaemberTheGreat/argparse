@@ -68,7 +68,7 @@ void argparse_init_buf(ArgparseBuf *buf,
 	buf->argc = argc;
 	buf->argv = argv;
 
-	buf->idx = 0;
+	buf->idx = 1;
 }
 
 int argparse_next(ArgparseBuf *buf,
