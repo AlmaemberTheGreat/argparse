@@ -26,6 +26,10 @@ typedef struct {
  * 
  * WARNING: The function does not copy the value of cfgs. Make sure
  * that the buffer is only used while the pointer is valid!
+ * 
+ * WARNING: The negative codes in argument configs have special meaning,
+ * and they are all reserved for such use. Please only use numbers that
+ * are greater than or equal to 0. This is not checked at runtime.
  */
 void argparse_init_buf(ArgparseBuf *buf,
                        ArgparseArgCfg cfgs[],
