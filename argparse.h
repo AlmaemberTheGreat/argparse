@@ -19,7 +19,7 @@ typedef struct {
 
 /*
  * Initialize an argparse buffer
- * WARNING: All parameters must be non-zero.
+ * WARNING: All pointer arguments must be non-NULL.
  * The function doesn't check for the pointers' validity at runtime!
  * 
  * WARNING: The function does not copy the value of cfgs. Make sure
