@@ -22,6 +22,8 @@ typedef struct {
  * WARNING: All pointer arguments must be non-NULL.
  * The function doesn't check for the pointers' validity at runtime!
  * 
+ * WARNING: Pointer arguments must point to writable memory.
+ * 
  * WARNING: The function does not copy the value of cfgs. Make sure
  * that the buffer is only used while the pointer is valid!
  */
