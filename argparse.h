@@ -43,6 +43,7 @@ typedef struct {
 	       idx,
 	       argc;
 	char **argv;
+	int parse_args;
 } ArgparseBuf;
 
 /*
@@ -99,6 +100,7 @@ void argparse_init_buf(ArgparseBuf *buf,
 	buf->argv = argv;
 
 	buf->idx = 1;
+	buf->parse_args = 1;
 }
 
 int argparse_next(ArgparseBuf *buf,
@@ -119,7 +121,7 @@ int argparse_next(ArgparseBuf *buf,
 		return -3;
 	}
 
-	if (arg_len > 1 && current_arg[0] == '-') {
+	if (arg_len > 1 && current_arg[0] == '-' && buf->parse_args) {
 		/* it's an option */
 		if (current_arg[1] == '-') {
 			/* long form option */
@@ -145,6 +147,11 @@ int argparse_next(ArgparseBuf *buf,
 				/* the option wasn't found */
 				*arg_val_out = current_arg;
 				return -5;
+			} else {
+				/* received '--' as an argument, stop argument parsing */
+				buf->parse_args = 0;
+				*arg_val_out = NULL;
+				return -3;
 			}
 		} else {
 			/* short form option */
