@@ -154,7 +154,25 @@ int argparse_next(ArgparseBuf *buf,
 				return -3;
 			}
 		} else {
+			char arg_opt;
+			size_t i;
+
 			/* short form option */
+			if (arg_len > 2) {
+				/* we have a value */
+				*arg_val_out = current_arg + 2;
+			} else {
+				/* we have no value */
+				*arg_val_out = NULL;
+			}
+
+			arg_opt = current_arg[1];
+			for (i = 0; i < buf->no_of_cfgs; ++i) {
+				if (buf->cfgs[i].short_name == arg_opt) {
+					return buf->cfgs[i].code;
+				}
+			}
+			return -5;
 		}
 	} else {
 		/* it's a positional argument */
