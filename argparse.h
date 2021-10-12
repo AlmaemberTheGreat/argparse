@@ -47,7 +47,7 @@ typedef struct {
 } ArgparseBuf;
 
 /*
- * Initialize an argparse buffer
+ * Initialise an argparse buffer
  * WARNING: All pointer arguments must be non-NULL.
  * The function doesn't check for the pointers' validity at runtime!
  * 
