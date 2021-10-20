@@ -1,3 +1,8 @@
+# PROJECT MOVED
+This project has been moved to [my own Git server][1]. All further updates, if any, will only be made there.
+
+[1]: https://git.almaember.com/utils/argparse.git/
+
 # argparse.h
 `argparse.h` is a single-header, ANSI C argument parsing library,
 with support for long-form (GNU style) and short form (Unix style)
